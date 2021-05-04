@@ -3,7 +3,7 @@ version: "3.8"
 services:
   hands-on-web:
     build:
-      context: ./hands-on-web
+      context: ./containers/hands-on-web
     command: yarn run dev
     container_name: hands-on-web
 
@@ -20,7 +20,7 @@ services:
 
   service1:
     build:
-      context: ./service1
+      context: ./containers/service1
     command: reflex -r '\.go$$' -s -- sh -c 'go run main.go'
     container_name: hands-on-service1
     ports:
@@ -31,9 +31,9 @@ services:
       - ./containers/service1:/app
     working_dir: /app
 
-  service1:
+  service2:
     build:
-      context: ./service1
+      context: ./containers/service1
     command: reflex -r '\.go$$' -s -- sh -c 'go run main.go'
     container_name: hands-on-service2
     ports:

@@ -1,3 +1,5 @@
-module simpleservice2
+module service2
 
 go 1.16
+
+require github.com/google/uuid v1.2.0 // indirect
