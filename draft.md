@@ -65,6 +65,13 @@
   - /bin/sh以外を使いたいときは `RUN ["/bin/bash", "-c", "echo hello"]`
   - RUN にはシェル変数を含めない
   - RUNのキャッシュ TODO
+- パイプ 
+  - 正常処理されたかどうかは、パイプの最後の処理の終了コードにより評価されます。
+  - `RUN wget -O - https://some.site | wc -l > /number`
+  - これが成功するかどうかはwc -lの成功にかかっている
+  - wgetが失敗していたときに気づけない可能性がある
+  - `RUN set -o pipefail && wget -O - https://some.site | wc -l > /number`
+  - これをつけて実行する
 > RUN cd /tmp を実行したとしても、次の命令には何の効果も与えません。
 
 - CMD 
@@ -96,6 +103,7 @@
     - データプレーン
       - EC2
       - Fargate
+      
 
 ## コラム
 

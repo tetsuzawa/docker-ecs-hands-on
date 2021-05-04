@@ -1,0 +1,48 @@
+version: "3.8"
+
+services:
+  hands-on-web:
+    build:
+      context: ./hands-on-web
+    command: yarn run dev
+    container_name: hands-on-web
+
+    # ポートマッピング。これがないとブラウザと通信できなかったりcurlできなかったりする。
+    ports:
+      - 3000:3000
+    env_file:
+      - ./containers/hands-on-web/hands-on-web.dev.env
+    # ローカルとコンテナのボリュームを同期
+    volumes:
+      - ./containers/hands-on-web:/app
+      - node_modules:/app/node_modules
+    working_dir: /app
+
+  service1:
+    build:
+      context: ./service1
+    command: reflex -r '\.go$$' -s -- sh -c 'go run main.go'
+    container_name: hands-on-service1
+    ports:
+      - 9001:9001
+    env_file:
+      - ./containers/service1/service1.dev.env
+    volumes:
+      - ./containers/service1:/app
+    working_dir: /app
+
+  service1:
+    build:
+      context: ./service1
+    command: reflex -r '\.go$$' -s -- sh -c 'go run main.go'
+    container_name: hands-on-service2
+    ports:
+      - 9002:9002
+    env_file:
+      - ./containers/service2/service2.dev.env
+    volumes:
+      - ./containers/service2:/app
+    working_dir: /app
+
+volumes:
+  node_modules:
