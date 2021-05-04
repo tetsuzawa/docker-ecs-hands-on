@@ -8,11 +8,6 @@ resource "aws_lb" "hands_on" {
     aws_subnet.hands_on_public_1c.id,
     aws_subnet.hands_on_public_1d.id]
 
-  access_logs {
-    bucket = aws_s3_bucket.hands_on_lb_logs.bucket
-    enabled = true
-  }
-
   tags = {
     Name = "hands-on-lb"
   }
