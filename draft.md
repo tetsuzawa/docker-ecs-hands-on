@@ -105,6 +105,11 @@
       - Fargate
       
 
+- 環境変数
+  - SSMを使う
+  - S3から読み込む
+  - task_defに直接入れる
+
 ## コラム
 
 - .dockerignoreとかCMDのファイルパスのパターンマッチについて
@@ -113,11 +118,5 @@
 
 
 
-## マルチステージビルド
-
-## ボリューム
 
 
-
-
-# Docker docker-compose kubernetesの違い
