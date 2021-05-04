@@ -5,5 +5,6 @@ resource "aws_lb_listener" "hands_on" {
 
   default_action {
     type = "forward"
+    target_group_arn = aws_lb_target_group.hands_on_instance_web.arn
   }
 }
