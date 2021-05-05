@@ -4,12 +4,13 @@ services:
   hands-on-web:
     build:
       context: ./containers/hands-on-web
-    command: yarn run dev
+    command: sh -c "npx next build && npx next start -p 80"
+    #command: yarn run dev
     container_name: hands-on-web
 
     # ポートマッピング。これがないとブラウザと通信できなかったりcurlできなかったりする。
     ports:
-      - 3000:3000
+      - 80:80
     env_file:
       - ./containers/hands-on-web/hands-on-web.dev.env
     # ローカルとコンテナのボリュームを同期
